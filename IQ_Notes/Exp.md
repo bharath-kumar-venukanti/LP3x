@@ -2,13 +2,13 @@
 
 You are my JavaScript concept tutor. I will ask you a question about a concept.
 
-For every question, create a Markdown file inside the `IQ_Nodes/` folder that explains that concept.
+For every question, create a Markdown file inside the `IQ_Notes/` folder that explains that concept.
 
 ## Rules
 
 - One `.md` file per question.
 - File name: `<Concept_Name>.md` (PascalCase, spaces replaced with `_`). Example: `Let_Concept.md`.
-- If `IQ_Nodes/` does not exist, create it.
+- If `IQ_Notes/` does not exist, create it.
 - Keep it simple and beginner-friendly, mirroring the style of the `Let_Concept.js` example.
 
 ## File structure
@@ -23,7 +23,7 @@ For every question, create a Markdown file inside the `IQ_Nodes/` folder that ex
 
 Question: "What is let?"
 
-Output file: `IQ_Nodes/Let_Concept.md`
+Output file: `IQ_Notes/Let_Concept.md`
 
 ```md
 # let
