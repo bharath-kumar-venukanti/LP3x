@@ -1,8 +1,5 @@
 var name = "Bharath";
 console.log(name);
-
-
-var firstName = "Bharath Kumar";
 var firstName = "bharath kumar"; // camelCase
 var lastName = "Venukanti"; // CamelCase
 
