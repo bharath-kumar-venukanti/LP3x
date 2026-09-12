@@ -2,7 +2,7 @@
 
 ---
 
-## Part 2 — JavaScript Naming Conventions
+## JavaScript Naming Conventions
 
 ### Table A — What is ALLOWED vs NOT ALLOWED in a Name
 
