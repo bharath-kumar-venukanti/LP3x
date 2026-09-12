@@ -1,0 +1,20 @@
+//null vs undefined
+console.log("--------------null vs undefined--------------");
+console.log("null == undefined:", null == undefined);
+console.log("null === undefined:", null === undefined);
+console.log("null == 0 :", null == 0);
+console.log("undefined == 0 :", undefined == 0);
+console.log("null > 0 :", null > 0);
+console.log("undefined > 0 :", undefined > 0);
+console.log("null < 0 :", null < 0);
+console.log("undefined < 0 :", undefined < 0);
+console.log("null >= 0 :", null >= 0);
+console.log("undefined >= 0 :", undefined >= 0);
+console.log("null <= 0 :", null <= 0);
+console.log("undefined <= 0 :", undefined <= 0);
+console.log("null != undefined:", null != undefined);
+console.log("null !== undefined:", null !== undefined);
+console.log("null == false:", null == false);
+console.log("undefined == false:", undefined == false);
+console.log("null === false:", null === false);
+console.log("undefined === false:", undefined === false);
