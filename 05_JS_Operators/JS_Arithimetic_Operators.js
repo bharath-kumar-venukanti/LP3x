@@ -1,6 +1,17 @@
 let a=10;
 let b=5;
 
+// Arithmetic Operators in JavaScript
+// let addition = a + b; // Addition
+// let subtraction = a - b; // Subtraction
+// let multiplication = a * b; // Multiplication
+// let division = a / b; // Division               
+
+// console.log("Addition: " + addition);
+// console.log("Subtraction: " + subtraction);
+// console.log("Multiplication: " + multiplication);
+// console.log("Division: " + division);
+
 // Addition
 console.log("--------------Addition--------------");    
 let sum = a + b;

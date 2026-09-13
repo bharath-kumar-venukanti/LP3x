@@ -1,7 +1,7 @@
     // Rules for comparison operators:
     // 1. If both operands are of the same type, compare their values directly.
     // 2. If the operands are of different types, convert them to a common type (type coercion) and then compare.
-    // 3. For strict equality (===) and strict inequality (!==), no type conversion is performed; both value and type must match.
+    // 3. For loose equality (==) and strict equality (===), no type conversion is performed; both value and type must match.
 
     // -------------------------------------------------
     //Empty string vs 0 vs "0"

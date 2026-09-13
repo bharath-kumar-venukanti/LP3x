@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(git commit -F - <<'EOF' Move JS identifiers folder to root and add sample rules Relocate 03_JS_Identifiers.js out of 01_JS_Basics to the project root and add JS_Identifiers_SampleRules01 and JS_Identifiers_Samplerules02. Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(git:*)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}
