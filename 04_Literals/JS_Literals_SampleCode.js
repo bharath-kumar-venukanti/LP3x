@@ -7,7 +7,7 @@ let hexNumber=0xFF; // This is a hexadecimal number literal
 let octalNumber=0o12; // This is an octal number literal
 
 //Numeric/Number literals can be represented in different formats
-//1.int
+//1.numric/number
 //2.float
 //3.binary
 //4.hexadecimal
