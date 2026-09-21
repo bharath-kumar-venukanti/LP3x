@@ -1,7 +1,7 @@
 // ==========================================
 // 1. PRIMITIVE DATA TYPES
 // ==========================================
-// Number: Integers and floating-point numbers (var, let, const)
+// Number: Integers and floating-point all comes under numbers (var, let, const)
 let age = 25;
 let price = 19.99;
 
