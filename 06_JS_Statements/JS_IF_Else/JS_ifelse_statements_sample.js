@@ -2,6 +2,8 @@
 
 // if (temperature > 30) {
 //   console.log("It's a hot day! Stay hydrated.");
+// } else{
+//console.log("It is a normal day.")
 // }
 
 let age = 16;
