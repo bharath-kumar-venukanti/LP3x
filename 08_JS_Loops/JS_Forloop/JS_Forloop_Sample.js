@@ -25,17 +25,3 @@ for (let i = n; i >= 1; i--) {
   console.log(`Countdown: ${i}`);
 }
 
-
-// 3. Skip count (Even numbers from 0 to 5)
-
-console.log("Skip count of Odd");
-for (let i = 0; i <= n; i += 2) {
-  console.log(`Even number: ${i}`);
-}
-
-
-// 4. Skip count (Odd numbers from 0 to 5)
-console.log("Skip count of even");
-for (let i = 0; i <= n; i += 3) {
-  console.log(`Even number: ${i}`);
-}
