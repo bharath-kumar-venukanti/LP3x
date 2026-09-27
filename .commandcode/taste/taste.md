@@ -4,4 +4,4 @@
 - Prefers explanations kept simple and beginner-friendly, mirroring the style/format of an existing example file in the repo (e.g. a small JS code block plus a plain-language explanation). Confidence: 0.6
 - Learning JavaScript basics through small, single-concept example files (e.g. `Let_Concept.js` containing only `let x = 1; console.log(x);`), organized in numbered topic folders that contain one subfolder per concept/topic (e.g. `05_JS_Operators/JS_Basic_Operators/...`, `05_JS_Operators/JS_Ternary/...`, `06_JS_Statements/JS_Switch/...`). Confidence: 0.6
 - Wants completed work committed and pushed to their GitHub repo (e.g. `github.com/bharath-kumar-venukanti/LP3x.git`) as part of finishing the task, rather than being handed manual git commands; they repeat this request even for small, routine edits (e.g. a single note tweak) and expect pushing to happen immediately. Confidence: 0.9
-- Pushes directly to `main` rather than using feature branches or pull requests. Confidence: 0.7
+- Pushes directly to `main` rather than using feature branches or pull requests. Confidence: 0.75
