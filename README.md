@@ -9,7 +9,7 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics to functions
+- explore progressively advanced topics from basics through functions, closures, and strings
 
 ## Learning path
 
@@ -24,7 +24,8 @@ The project is designed to help learners:
 | 07 | [07_Userinputs](./07_Userinputs) | Reading user input in Node.js |
 | 08 | [08_JS_Loops](./08_JS_Loops) | `for`, `while`, and `do...while` |
 | 09 | [09_JS_Arrays](./09_JS_Arrays) | Array operations and iteration |
-| 10 | [10_JS_Functions](./10_JS_Functions) | Function declarations, expressions, arrow functions, hoisting, and practice |
+| 10 | [10_JS_Functions](./10_JS_Functions) | Function declarations, expressions, arrow functions, rest/spread, hoisting, TDZ, and closures |
+| 11 | [11_JS_String](./11_JS_String) | Creating strings, length, character access, and essential search/transform methods |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -57,7 +58,10 @@ Loop structures and control statements such as `break` and `continue`.
 Accessing, filtering, sorting, transforming, and iterating arrays.
 
 ### 10_JS_Functions
-Function declarations, function expressions, arrow functions, rest/spread usage, hoisting behavior, and practice scripts.
+Function declarations, function expressions, arrow functions, rest/spread usage, hoisting behavior, `TDZ`, closures, and practice scripts.
+
+### 11_JS_String
+Creating strings with single quotes, double quotes, and template literals, plus finding length, accessing individual characters (`[]` and `charAt`), and essential methods such as `toUpperCase`, `toLowerCase`, `includes`, `indexOf`, `startsWith`, and `endsWith`.
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -91,6 +95,7 @@ You can also run files directly from VS Code using the Run button or run the scr
 08_JS_Loops/
 09_JS_Arrays/
 10_JS_Functions/
+11_JS_String/
 IQ_Notes/
 README.md
 ```
