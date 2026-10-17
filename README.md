@@ -26,6 +26,7 @@ The project is designed to help learners:
 | 09 | [09_JS_Arrays](./09_JS_Arrays) | Array creation, access, mutation, iteration, transformation, searching, and sorting |
 | 10 | [10_JS_Functions](./10_JS_Functions) | Function declarations, expressions, arrow functions, rest/spread, hoisting, TDZ, and closures |
 | 11 | [11_JS_String](./11_JS_String) | Creating strings, length, character access, and essential search/transform methods |
+| 12 | [12_JS_Objects](./12_JS_Objects) | Creating objects, property types, keys, shorthand, and computed property names |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -82,6 +83,16 @@ Function declarations, function expressions, arrow functions, rest/spread usage,
 ### 11_JS_String
 Creating strings with single quotes, double quotes, and template literals, plus finding length, accessing individual characters (`[]` and `charAt`), and essential methods such as `toUpperCase`, `toLowerCase`, `includes`, `indexOf`, `startsWith`, and `endsWith`.
 
+### 12_JS_Objects
+Creating objects using object literals, empty objects, and nested objects, plus property values of every basic type (string, number, boolean, array, `null`, `undefined`), case-sensitive keys and keys containing spaces, and shorthand and computed property names. Organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Object_Creation` | Object literals, empty objects, and nested objects |
+| `02_JS_Object_Property_Types` | String/number/boolean, array, and `null`/`undefined` property values |
+| `03_JS_Object_Keys` | Case-sensitive keys and keys containing spaces |
+| `04_JS_Object_Shorthand_Computed` | Shorthand properties and computed property names |
+
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
 
@@ -128,6 +139,11 @@ You can also run files directly from VS Code using the Run button or run the scr
 └── 09_Array_Other_Operations/
 10_JS_Functions/
 11_JS_String/
+12_JS_Objects/
+├── 01_JS_Object_Creation/
+├── 02_JS_Object_Property_Types/
+├── 03_JS_Object_Keys/
+└── 04_JS_Object_Shorthand_Computed/
 IQ_Notes/
 README.md
 ```
