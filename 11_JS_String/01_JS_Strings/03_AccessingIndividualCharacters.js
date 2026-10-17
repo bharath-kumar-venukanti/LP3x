@@ -8,3 +8,7 @@ console.log(firstChar)
 //3. Finding char with charAt()
 let find_Char=greet.charAt(4);
 console.log(find_Char)
+
+//4. Finding with charCodeAt() - ASCII
+let find_Cca=greet.charCodeAt(0)
+console.log(find_Cca)

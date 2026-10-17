@@ -1,0 +1,6 @@
+function sumTwoNumbers(a,b){
+    return a+b;
+}
+
+let sum=sumTwoNumbers(5,23)
+console.log(sum)

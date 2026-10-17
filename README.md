@@ -9,7 +9,7 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, and strings
+- explore progressively advanced topics from basics through functions, closures, strings, and objects
 
 ## Learning path
 
@@ -24,8 +24,8 @@ The project is designed to help learners:
 | 07 | [07_Userinputs](./07_Userinputs) | Reading user input in Node.js |
 | 08 | [08_JS_Loops](./08_JS_Loops) | `for`, `while`, and `do...while`, plus loop practice |
 | 09 | [09_JS_Arrays](./09_JS_Arrays) | Array creation, access, mutation, iteration, transformation, searching, and sorting |
-| 10 | [10_JS_Functions](./10_JS_Functions) | Function declarations, expressions, arrow functions, rest/spread, hoisting, TDZ, and closures |
-| 11 | [11_JS_String](./11_JS_String) | Creating strings, length, character access, and essential search/transform methods |
+| 10 | [10_JS_Functions](./10_JS_Functions) | Function rules, declarations, expressions, arrow functions, rest/spread, hoisting, TDZ, closures, and practice |
+| 11 | [11_JS_String](./11_JS_String) | Creating strings, length, character access, search methods, and string extraction/transformation methods |
 | 12 | [12_JS_Objects](./12_JS_Objects) | Creating objects, property types, keys, shorthand, and computed property names |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
@@ -78,20 +78,38 @@ Array fundamentals split into progressive subfolders:
 | `09_Array_Other_Operations` | Spread/rest, shallow copy, and misc operations |
 
 ### 10_JS_Functions
-Function declarations, function expressions, arrow functions, rest/spread usage, hoisting behavior, `TDZ`, closures, and practice scripts.
-
-### 11_JS_String
-Creating strings with single quotes, double quotes, and template literals, plus finding length, accessing individual characters (`[]` and `charAt`), and essential methods such as `toUpperCase`, `toLowerCase`, `includes`, `indexOf`, `startsWith`, and `endsWith`.
-
-### 12_JS_Objects
-Creating objects using object literals, empty objects, and nested objects, plus property values of every basic type (string, number, boolean, array, `null`, `undefined`), case-sensitive keys and keys containing spaces, and shorthand and computed property names. Organized into focused subfolders:
+Function fundamentals split into progressive subfolders, plus a standalone `JS_Return_vs_Consol.js` comparison:
 
 | Folder | Focus |
 |--------|-------|
+| `01_JS_Fn_Rules` | Function declaration rules and samples |
+| `02_Fn` | Additional function samples |
+| `03_JS_Arrow_fn` | Arrow functions, including multi-line bodies |
+| `04_JS_Fn_Exp` | Function expressions |
+| `05_JS_Fn_Spreading` | Spread and rest usage in function calls |
+| `06_JS_Hoisting` | Hoisting with `function`, `var`, `let`, and `const` |
+| `07_TDZ` | Temporal Dead Zone examples |
+| `O8_JS_Prac` | Real-time practice and template literal exercises |
+| `09_JS_Clouser` | Closures, including a max-retry example |
+
+### 11_JS_String
+String basics and extraction/transformation methods, organized into two subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Strings` | Creating strings (single quotes, double quotes, template literals), length, character access (`[]` and `charAt`), and search methods (`includes`, `indexOf`, `startsWith`, `endsWith`) |
+| `02_JS_Extract_Strings` | `slice`, `substring`, case conversion (`toUpperCase`/`toLowerCase`), `replace`, `trim`, `concat`, `split`/`join`, and string conversion |
+
+### 12_JS_Objects
+Creating objects using object literals, empty objects, and nested objects, plus property values of basic types (string, number, boolean, array), case-sensitive keys and keys containing spaces, and shorthand property names. Organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `JS_Obj_Basics` | Introductory object samples |
 | `01_JS_Object_Creation` | Object literals, empty objects, and nested objects |
-| `02_JS_Object_Property_Types` | String/number/boolean, array, and `null`/`undefined` property values |
+| `02_JS_Object_Property_Types` | String/number/boolean and array property values |
 | `03_JS_Object_Keys` | Case-sensitive keys and keys containing spaces |
-| `04_JS_Object_Shorthand_Computed` | Shorthand properties and computed property names |
+| `04_JS_Object_Shorthand_Computed` | Shorthand properties |
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -138,12 +156,25 @@ You can also run files directly from VS Code using the Run button or run the scr
 ├── 08_JS_Array_Sorting/
 └── 09_Array_Other_Operations/
 10_JS_Functions/
+├── 01_JS_Fn_Rules/
+├── 02_Fn/
+├── 03_JS_Arrow_fn/
+├── 04_JS_Fn_Exp/
+├── 05_JS_Fn_Spreading/
+├── 06_JS_Hoisting/
+├── 07_TDZ/
+├── O8_JS_Prac/
+├── 09_JS_Clouser/
+└── JS_Return_vs_Consol.js
 11_JS_String/
+├── 01_JS_Strings/
+└── 02_JS_Extract_Strings/
 12_JS_Objects/
 ├── 01_JS_Object_Creation/
 ├── 02_JS_Object_Property_Types/
 ├── 03_JS_Object_Keys/
-└── 04_JS_Object_Shorthand_Computed/
+├── 04_JS_Object_Shorthand_Computed/
+└── JS_Obj_Basics/
 IQ_Notes/
 README.md
 ```

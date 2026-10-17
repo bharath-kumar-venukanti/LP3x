@@ -5,7 +5,14 @@
       "Shell(git:*)",
       "Shell(git add -A && git commit -F - <<'EOF' Updated JS loop samples Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
       "Shell(git commit -F - <<'EOF' Added JS nested for loop sample Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
-      "Shell(git commit -F - <<'EOF' Update README and reorganize JS function examples - Rewrite README with accurate module-by-module breakdown (01-10) - Reorganize 10_JS_Functions examples into topic subfolders - Add loop practice files and array iteration updates Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
+      "Shell(git commit -F - <<'EOF' Update README and reorganize JS function examples - Rewrite README with accurate module-by-module breakdown (01-10) - Reorganize 10_JS_Functions examples into topic subfolders - Add loop practice files and array iteration updates Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(git commit -F - <<'EOF' Reorganize arrays and loops folders; update README - Split 09_JS_Arrays into themed subfolders (creation, access, add/remove, splice/slice, iteration, transformation, searching, sorting, other ops) - Add loop practice files and organize loop examples by type - Update README learning path, folder overview, and repository structure Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(node --version)",
+      "Shell(for:*)",
+      "Shell(do:*)",
+      "Shell(node )",
+      "Shell(done:*)",
+      "powershell"
     ],
     "deny": [],
     "defaultMode": "default"

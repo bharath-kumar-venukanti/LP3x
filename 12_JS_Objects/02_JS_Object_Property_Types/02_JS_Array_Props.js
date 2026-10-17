@@ -11,7 +11,7 @@ let testRun = {
   passCounts: [10, 8, 9]
 };
 
-console.log(testRun.browsers);        // the whole array
-console.log(testRun.browsers[0]);     // first item  -> Chrome
-console.log(testRun.browsers.length); // number of items -> 3
-console.log(testRun.passCounts[2]);   // third item  -> 9
+console.log(testRun.browsers);        
+console.log(testRun.browsers[0]);    
+console.log(testRun.browsers.length); 
+console.log(testRun.passCounts[2]);   

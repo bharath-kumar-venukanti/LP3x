@@ -1,0 +1,6 @@
+function getUserName(name){
+return `Hello, ${name}`
+}
+
+let userName=getUserName("Bharath");
+console.log(userName)
