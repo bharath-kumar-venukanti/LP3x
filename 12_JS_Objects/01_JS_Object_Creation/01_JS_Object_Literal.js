@@ -2,12 +2,13 @@
 // It is the most common way to create an object in JavaScript.
 // Here we store the result of a test case, the way a test-automation beginner would.
 
-let testResult = {
-  testCase: "Login with valid credentials", // string value
-  status: "Pass",                           // string value
-  duration: 250,                            // number value (milliseconds)
-  retry: false                              // boolean value
-};
+
+const testResult = {
+  testCase: "Login with valid credentials",
+  status: "Pass",
+  duration: 250,
+  retry: false
+}
 
 // Print the whole object.
 console.log(testResult);
