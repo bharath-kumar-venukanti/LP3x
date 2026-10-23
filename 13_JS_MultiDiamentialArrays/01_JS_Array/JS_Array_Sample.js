@@ -5,7 +5,9 @@ let matrix = [
     [7, 8, 9]
 ];
 
-// Approach 1
+// console.log(matrix.length)
+
+    // Approach 1
 
 // Outer loop: Iterates through the rows
 for(let i=0;i<matrix.length;i++){
