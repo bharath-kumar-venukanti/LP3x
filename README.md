@@ -9,7 +9,7 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, strings, and objects
+- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, and promises
 
 ## Learning path
 
@@ -27,6 +27,9 @@ The project is designed to help learners:
 | 10 | [10_JS_Functions](./10_JS_Functions) | Function rules, declarations, expressions, arrow functions, rest/spread, hoisting, TDZ, closures, and practice |
 | 11 | [11_JS_String](./11_JS_String) | Creating strings, length, character access, search methods, and string extraction/transformation methods |
 | 12 | [12_JS_Objects](./12_JS_Objects) | Creating objects, property types, keys, shorthand, and computed property names |
+| 13 | [13_JS_MultiDiamentialArrays](./13_JS_MultiDiamentialArrays) | 2D array traversal, row sums, and star/pattern printing |
+| 14 | [14_JS_CallBack](./14_JS_CallBack) | Callback functions: passing callbacks, async callbacks, return values, and practice |
+| 15 | [15_JS_Promise](./15_JS_Promise) | Promise sample |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -111,6 +114,29 @@ Creating objects using object literals, empty objects, and nested objects, plus 
 | `03_JS_Object_Keys` | Case-sensitive keys and keys containing spaces |
 | `04_JS_Object_Shorthand_Computed` | Shorthand properties |
 
+### 13_JS_MultiDiamentialArrays
+Two-dimensional (matrix) array handling and nested-loop pattern printing, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Array` | 2D array samples, matrix traversal with nested loops, length inspection, and per-row sums |
+| `02_JS_Right_Patterns` | Printing a right-angled triangle of stars using `repeat()` and nested loops |
+| `03_JS_Left_Pattern` | Printing a left-aligned triangle of stars using `repeat()` and nested loops |
+| `04_JS_Pyramid_Pattern` | Printing a centered pyramid of stars with leading spaces and an odd-number star row |
+
+### 14_JS_CallBack
+Callback functions from basics to async, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_CallBack_Samples` | Passing callbacks as named, anonymous, and arrow functions, plus a simulated async order flow and a callback-hell login example |
+| `02_JS_Async_Callback` | Asynchronous callbacks using `setTimeout` and a chained end-to-end login flow |
+| `03_JS_Callback_Return` | Callbacks that return values, such as a `calculate` function driven by a passed-in operation |
+| `04_JS_Callback_Prct` | Hands-on callback practice: passing callbacks by reference, anonymous and arrow callbacks, argument passing, and guarding against invalid callbacks |
+
+### 15_JS_Promise
+Introductory promise sample showing asynchronous flow with a promise-based example.
+
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
 
@@ -175,6 +201,18 @@ You can also run files directly from VS Code using the Run button or run the scr
 ├── 03_JS_Object_Keys/
 ├── 04_JS_Object_Shorthand_Computed/
 └── JS_Obj_Basics/
+13_JS_MultiDiamentialArrays/
+├── 01_JS_Array/
+├── 02_JS_Right_Patterns/
+├── 03_JS_Left_Pattern/
+└── 04_JS_Pyramid_Pattern/
+14_JS_CallBack/
+├── 01_JS_CallBack_Samples/
+├── 02_JS_Async_Callback/
+├── 03_JS_Callback_Return/
+└── 04_JS_Callback_Prct/
+15_JS_Promise/
+└── 01_JS_Promise_Sample.js
 IQ_Notes/
 README.md
 ```
