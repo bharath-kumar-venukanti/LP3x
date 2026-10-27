@@ -29,7 +29,7 @@ The project is designed to help learners:
 | 12 | [12_JS_Objects](./12_JS_Objects) | Creating objects, property types, keys, shorthand, and computed property names |
 | 13 | [13_JS_MultiDiamentialArrays](./13_JS_MultiDiamentialArrays) | 2D array traversal, row sums, and star/pattern printing |
 | 14 | [14_JS_CallBack](./14_JS_CallBack) | Callback functions: passing callbacks, async callbacks, return values, and practice |
-| 15 | [15_JS_Promise](./15_JS_Promise) | Promise sample |
+| 15 | [15_JS_Promise](./15_JS_Promise) | Promises: creating promises, `resolve`/`reject`, chaining `.then`/`.catch`/`.finally`, and practice |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -135,7 +135,12 @@ Callback functions from basics to async, organized into focused subfolders:
 | `04_JS_Callback_Prct` | Hands-on callback practice: passing callbacks by reference, anonymous and arrow callbacks, argument passing, and guarding against invalid callbacks |
 
 ### 15_JS_Promise
-Introductory promise sample showing asynchronous flow with a promise-based example.
+Promise fundamentals and hands-on practice, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Promise` | Creating promises with `resolve`/`reject`, consuming them with `.then`, and handling failure via `.catch` and `.finally` |
+| `02_JS_Promise_Pract` | A food-order scenario modeling the pending/fulfilled/rejected states with arrow and regular function callbacks |
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -212,7 +217,8 @@ You can also run files directly from VS Code using the Run button or run the scr
 ├── 03_JS_Callback_Return/
 └── 04_JS_Callback_Prct/
 15_JS_Promise/
-└── 01_JS_Promise_Sample.js
+├── 01_JS_Promise/
+└── 02_JS_Promise_Pract/
 IQ_Notes/
 README.md
 ```
