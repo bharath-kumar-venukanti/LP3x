@@ -12,15 +12,19 @@ let orderSuccessed = true;
 //Creating the Promise
 let foodOrder=new Promise(function (resolve, reject) {
     //The Pending State
-    console.log("Status: Pending — food is being prepared")
+    // setTimeout(() => {
+        console.log("Status: Pending — food is being prepared")
+    // }, 2000);
     // If-else statement to check if the order was successful or not
-    if (orderSuccessed) {
-        // If true, fulfill (resolve) the promise with a success messag
-        resolve("Status: Fulfilled (Resolved) — foodItem is delivered. Enjoy your meal.");
-    } else {
-        // If false, reject the promise with a cancellation message
-        reject("Status: Rejected — order cancelled by the restaurant or delivery partner.");
-    }
+  setTimeout(() => {
+      if (orderSuccessed) {
+          // If true, fulfill (resolve) the promise with a success messag
+          resolve("Status: Fulfilled (Resolved) — foodItem is delivered. Enjoy your meal.");
+      } else {
+          // If false, reject the promise with a cancellation message
+          reject("Status: Rejected — order cancelled by the restaurant or delivery partner.");
+      }
+  }, 2000);
 })
 // The final outcome of the Promise with Arrow Function
 foodOrder.then((successMessege)=>{
@@ -28,4 +32,3 @@ foodOrder.then((successMessege)=>{
 }).catch((errorMessage) => {
       console.error(errorMessage);
   });
-

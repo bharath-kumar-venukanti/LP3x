@@ -1,0 +1,13 @@
+// Output order:
+// 1. Open browser - SYNCHRONOUS EXECUTION
+// 2. Page data loaded from server (2 seconds later) - ASYNCHRONOUS EXECUTION
+// 3. Click login button - SYNCHRONOUS EXECUTION
+
+// Step 1: Executes Open Browser 
+console.log("1. Open Browser")
+//Step 2: Sets a 2-second timer.
+setTimeout(() => {
+   console.log("2. Page data loaded from server");
+}, 2000);
+// Step 3: Executes immediately right after Step 1
+console.log("3. Click on Login Page")
