@@ -1,6 +1,6 @@
 ﻿# JavaScript Learning Journey (LP3x)
 
-This repository is a hands-on JavaScript practice workspace for learning core language concepts in small, focused steps. Each folder contains practical examples, short exercises, and starter code to help understand one idea at a time.
+This repository is a hands-on JavaScript learning workspace with focused examples, short exercises, and an interactive browser portfolio for exploring and running supported programs.
 
 ## Purpose
 
@@ -9,7 +9,8 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, and promises
+- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, and async/await
+- browse, search, and run supported examples in the browser-based portfolio
 
 ## Learning path
 
@@ -29,7 +30,8 @@ The project is designed to help learners:
 | 12 | [12_JS_Objects](./12_JS_Objects) | Creating objects, property types, keys, shorthand, and computed property names |
 | 13 | [13_JS_MultiDiamentialArrays](./13_JS_MultiDiamentialArrays) | 2D array traversal, row sums, and star/pattern printing |
 | 14 | [14_JS_CallBack](./14_JS_CallBack) | Callback functions: passing callbacks, async callbacks, return values, and practice |
-| 15 | [15_JS_Promise](./15_JS_Promise) | Promises: creating promises, `resolve`/`reject`, chaining `.then`/`.catch`/`.finally`, and practice |
+| 15 | [15_JS_Promise](./15_JS_Promise) | Promises: `resolve`/`reject`, chaining, and the `all`, `allSettled`, and `race` methods |
+| 16 | [16_JS_Async_Await](./16_JS_Async_Await) | Synchronous vs. asynchronous execution, timers, callbacks, and async/await |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -140,7 +142,13 @@ Promise fundamentals and hands-on practice, organized into focused subfolders:
 | Folder | Focus |
 |--------|-------|
 | `01_JS_Promise` | Creating promises with `resolve`/`reject`, consuming them with `.then`, and handling failure via `.catch` and `.finally` |
-| `02_JS_Promise_Pract` | A food-order scenario modeling the pending/fulfilled/rejected states with arrow and regular function callbacks |
+| `02_JS_Promise_Pract` | Food-order examples modeling pending, fulfilled, and rejected states |
+| `03_JS_Promise_All` | Running multiple promises with `Promise.all` |
+| `04_JS_Promise_AllSettled` | Handling the results of all promises with `Promise.allSettled` |
+| `05_JS_Promise_Race` | Using `Promise.race` to observe the first settled promise |
+
+### 16_JS_Async_Await
+Examples that build from synchronous and asynchronous execution through timers, callback patterns, and async/await.
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -154,6 +162,16 @@ node 01_JS_Basics/HellowWorld.js
 ```
 
 You can also run files directly from VS Code using the Run button or run the script in the terminal.
+
+## Browser portfolio
+
+Open `index.html` in a browser to browse the program collection. The portfolio includes search and category filters, and supported examples can be run in the page. If you add or change practice files represented in the portfolio, regenerate its program data with:
+
+```bash
+node tools/generate-programs.mjs
+```
+
+The generated `programs-data.js` file is consumed by the portfolio page.
 
 ## Tools used
 
@@ -218,11 +236,22 @@ You can also run files directly from VS Code using the Run button or run the scr
 └── 04_JS_Callback_Prct/
 15_JS_Promise/
 ├── 01_JS_Promise/
-└── 02_JS_Promise_Pract/
+├── 02_JS_Promise_Pract/
+├── 03_JS_Promise_All/
+├── 04_JS_Promise_AllSettled/
+└── 05_JS_Promise_Race/
+16_JS_Async_Await/
+├── 01_JS_Async_Await_Basics/
+└── 02_JS_Async_Await_CoreSamples/
 IQ_Notes/
+index.html
+script.js
+style.css
+programs-data.js
+tools/
 README.md
 ```
 
 ## Notes
 
-This repository is intended for learning and experimentation. It is best used by opening individual folders and running the example files one by one to understand the concept in context.
+This repository is intended for learning and experimentation. Run examples individually to understand each concept in context, or use the browser portfolio to explore supported programs interactively.
