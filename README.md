@@ -170,6 +170,13 @@ Object-oriented programming basics, organized into focused subfolders:
 | `02_JS_Constructors/01_JS_Defaults_Constructor` | A default constructor that runs when an object is created |
 | `02_JS_Constructors/02_JS_Param_Constructor` | Parameterized constructors that accept and log values, plus a version that stores properties (`name`, `age`, `grade`) with `this` and uses them in an `introduce` method |
 
+Sample files:
+
+- `01_JS_Class_Obj/01_JS_Class_Obj_Sample` — a class with a `greetings` method and an object created with `new`
+- `02_JS_Constructors/01_JS_Defaults_Constructor/01_JS_Default_Constructor.js` — a default constructor invoked on object creation
+- `02_JS_Constructors/02_JS_Param_Constructor/01_JS_Param_Con_Sample.js` — a parameterized constructor that logs the arguments it receives
+- `02_JS_Constructors/02_JS_Param_Constructor/02_JS_Param_Con_Sample.js` — a parameterized constructor that stores properties and uses them in a method
+
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
 

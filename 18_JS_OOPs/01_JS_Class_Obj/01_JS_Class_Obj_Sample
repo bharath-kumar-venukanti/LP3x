@@ -7,7 +7,7 @@ class studentDetails{
     }
 }
 
-//Cretaing the object to access the method
+//Creating the object to access the method
 let std=new studentDetails()
 std.greetings("Bharath")
 

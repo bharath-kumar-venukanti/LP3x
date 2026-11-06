@@ -12,7 +12,7 @@ class studentDetails{
     // }
 }
 
-//Cretaing the object to access the Constructor
+//Creating the object to access the Constructor
 let std=new studentDetails()
 // std.greetings("Bharath")
 
