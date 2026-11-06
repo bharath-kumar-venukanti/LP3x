@@ -14,7 +14,7 @@ class studentDetails{
 
 }
 
-//Cretaing the object to access the Constructor
+//Creating the object to access the Constructor
 let std=new studentDetails("Bharath",10, "A")
 
 let std2=new studentDetails("Sharath",10, "B")

@@ -33,7 +33,7 @@ The project is designed to help learners:
 | 15 | [15_JS_Promise](./15_JS_Promise) | Promises: `resolve`/`reject`, chaining, and the `all`, `allSettled`, and `race` methods |
 | 16 | [16_JS_Async_Await](./16_JS_Async_Await) | Synchronous vs. asynchronous execution, timers, callbacks, and async/await |
 | 17 | [17_JS_Export_Import](./17_JS_Export_Import) | ES modules: named and default exports, imports, aliasing, and multi-file reuse |
-| 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes and objects, plus default and parameterized constructors |
+| 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes, objects and methods, plus default and parameterized constructors |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -166,8 +166,9 @@ Object-oriented programming basics, organized into focused subfolders:
 
 | Folder | Focus |
 |--------|-------|
-| `01_JS_Class_Obj` | Defining a class, creating objects, and calling methods |
-| `02_JS_Constructors` | Default constructors and parameterized constructors, including storing properties and using methods with `this` |
+| `01_JS_Class_Obj` | Defining a class, creating an object with `new`, and calling a method (`greetings`) |
+| `02_JS_Constructors/01_JS_Defaults_Constructor` | A default constructor that runs when an object is created |
+| `02_JS_Constructors/02_JS_Param_Constructor` | Parameterized constructors that accept and log values, plus a version that stores properties (`name`, `age`, `grade`) with `this` and uses them in an `introduce` method |
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -270,7 +271,13 @@ The generated `programs-data.js` file is consumed by the portfolio page.
 └── 03_JS_Exp_Imp_Samples/
 18_JS_OOPs/
 ├── 01_JS_Class_Obj/
+│   └── 01_JS_Class_Obj_Sample
 └── 02_JS_Constructors/
+    ├── 01_JS_Defaults_Constructor/
+    │   └── 01_JS_Default_Constructor.js
+    └── 02_JS_Param_Constructor/
+        ├── 01_JS_Param_Con_Sample.js
+        └── 02_JS_Param_Con_Sample.js
 IQ_Notes/
 index.html
 script.js
