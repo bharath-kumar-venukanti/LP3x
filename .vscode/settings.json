@@ -1,0 +1,5 @@
+{
+  "javascript.suggest.autoImports": false,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "editor.inlineSuggest.enabled": false
+}

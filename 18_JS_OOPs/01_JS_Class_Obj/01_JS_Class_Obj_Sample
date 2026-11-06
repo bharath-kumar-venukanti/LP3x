@@ -1,0 +1,13 @@
+class studentDetails{
+
+    //Creating Method
+    greetings(name){
+        console.log("Good Morning "+name+"!");
+        
+    }
+}
+
+//Cretaing the object to access the method
+let std=new studentDetails()
+std.greetings("Bharath")
+

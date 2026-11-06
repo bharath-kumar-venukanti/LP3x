@@ -9,7 +9,7 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, and async/await
+- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, async/await, ES modules, and object-oriented programming
 - browse, search, and run supported examples in the browser-based portfolio
 
 ## Learning path
@@ -32,6 +32,8 @@ The project is designed to help learners:
 | 14 | [14_JS_CallBack](./14_JS_CallBack) | Callback functions: passing callbacks, async callbacks, return values, and practice |
 | 15 | [15_JS_Promise](./15_JS_Promise) | Promises: `resolve`/`reject`, chaining, and the `all`, `allSettled`, and `race` methods |
 | 16 | [16_JS_Async_Await](./16_JS_Async_Await) | Synchronous vs. asynchronous execution, timers, callbacks, and async/await |
+| 17 | [17_JS_Export_Import](./17_JS_Export_Import) | ES modules: named and default exports, imports, aliasing, and multi-file reuse |
+| 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes and objects, plus default and parameterized constructors |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -150,6 +152,23 @@ Promise fundamentals and hands-on practice, organized into focused subfolders:
 ### 16_JS_Async_Await
 Examples that build from synchronous and asynchronous execution through timers, callback patterns, and async/await.
 
+### 17_JS_Export_Import
+ES module export/import examples, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Exp_Imp_Samples` | Named exports (declared inline and listed at the bottom), a default export class, and importing them with aliases |
+| `02_JS_Exp_Imp_Samples` | Exporting and importing validation helpers and reusing a default-exported class across folders |
+| `03_JS_Exp_Imp_Samples` | Default exports and importing them into a consumer module |
+
+### 18_JS_OOPs
+Object-oriented programming basics, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_JS_Class_Obj` | Defining a class, creating objects, and calling methods |
+| `02_JS_Constructors` | Default constructors and parameterized constructors, including storing properties and using methods with `this` |
+
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
 
@@ -162,6 +181,8 @@ node 01_JS_Basics/HellowWorld.js
 ```
 
 You can also run files directly from VS Code using the Run button or run the script in the terminal.
+
+The `17_JS_Export_Import` examples use ES module syntax (`import`/`export`). Run them with Node.js 22.7+ (which detects module syntax automatically), or add a `package.json` with `"type": "module"`.
 
 ## Browser portfolio
 
@@ -243,6 +264,13 @@ The generated `programs-data.js` file is consumed by the portfolio page.
 16_JS_Async_Await/
 ├── 01_JS_Async_Await_Basics/
 └── 02_JS_Async_Await_CoreSamples/
+17_JS_Export_Import/
+├── 01_JS_Exp_Imp_Samples/
+├── 02_JS_Exp_Imp_Samples/
+└── 03_JS_Exp_Imp_Samples/
+18_JS_OOPs/
+├── 01_JS_Class_Obj/
+└── 02_JS_Constructors/
 IQ_Notes/
 index.html
 script.js
