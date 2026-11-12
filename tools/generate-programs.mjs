@@ -7,7 +7,7 @@
  *
  * Run:  node tools/generate-programs.mjs
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,6 +24,8 @@ const categories = [
   { id: 'callbacks',    label: 'Callbacks',                blurb: 'Passing, returning and chaining callbacks.' },
   { id: 'promises',     label: 'Promises',                 blurb: 'resolve/reject, then/catch/finally, all/allSettled/race.' },
   { id: 'async',        label: 'Async / Await',            blurb: 'Timers, async flows and awaited promises.' },
+  { id: 'modules',      label: 'ES Modules',               blurb: 'Named exports, default exports and imports.' },
+  { id: 'oop',          label: 'Object-Oriented JavaScript', blurb: 'Classes, constructors, inheritance and encapsulation.' },
 ];
 
 // [id, title, description, category, tags, file, options]
@@ -97,6 +99,8 @@ const entries = [
   ['array-splice', 'splice()', 'Insert, remove and replace elements in place.', 'arrays', ['splice'], '09_JS_Arrays/04_Array_Splice_Slice/JS_Array_Splice.js'],
   ['array-iteration', 'Array Iteration', 'for, forEach and for...of side by side.', 'arrays', ['iterate'], '09_JS_Arrays/05_JS_Array_Iterartions/JS_Array_Iterations.js'],
   ['array-iteration-results', 'Iterating Test Results', 'Stop iterating as soon as a test passes.', 'arrays', ['iterate', 'break'], '09_JS_Arrays/05_JS_Array_Iterartions/01_JS_Itr.js'],
+  ['array-iteration-for-of', 'Find Passing Tests with for...of', 'Inspect every result with a for...of loop.', 'arrays', ['iterate', 'for...of'], '09_JS_Arrays/05_JS_Array_Iterartions/02_JS_Itr.js'],
+  ['array-iteration-foreach', 'Find Passing Tests with forEach', 'Use forEach to report each passing test result.', 'arrays', ['iterate', 'forEach'], '09_JS_Arrays/05_JS_Array_Iterartions/03_JS_Itr.js'],
   ['array-map', 'map()', 'Transform every element into a new array.', 'arrays', ['map'], '09_JS_Arrays/06_JS_Array_Transformation/JS_Array_Transformation_Map.js'],
   ['array-filter', 'filter()', 'Keep only the elements that match a condition.', 'arrays', ['filter'], '09_JS_Arrays/06_JS_Array_Transformation/JS_Array_Transformation_Filter.js'],
   ['array-reduce', 'reduce()', 'Fold an array into a single value (a sum).', 'arrays', ['reduce'], '09_JS_Arrays/06_JS_Array_Transformation/JS_Array_Transformation_Reduce.js'],
@@ -126,6 +130,7 @@ const entries = [
   ['object-shorthand', 'Shorthand Properties', 'Build objects from existing variables with shorthand.', 'objects', ['shorthand'], '12_JS_Objects/04_JS_Object_Shorthand_Computed/01_JS_Shorthand_Properties.js'],
   ['object-basics', 'Objects are References', 'Copying a variable copies the reference, not the object.', 'objects', ['reference'], '12_JS_Objects/JS_Obj_Basics/03_JS_Obj_Sample.js'],
   ['object-case-sample', 'Case-Sensitive Access', 'Read status and Status properties with dot notation.', 'objects', ['keys'], '12_JS_Objects/JS_Obj_Basics/02_JS_Obj_Sample.js'],
+  ['object-property-access', 'Dot & Bracket Property Access', 'Read an object property with dot and bracket notation.', 'objects', ['properties', 'access'], '12_JS_Objects/JS_Obj_Basics/01_JS_Obj_Sample.js'],
 
   // ---------------------------------------------------------------- functions
   ['function-no-args', 'Function: No Args', 'Declare and call a function with no parameters or return value.', 'functions', ['declaration'], '10_JS_Functions/01_JS_Fn_Rules/JS_Fuctions_Sample1.js'],
@@ -153,6 +158,7 @@ const entries = [
   ['status-validator', 'HTTP Status Validator', 'Check status codes in three different function styles.', 'functions', ['http', 'practice'], '10_JS_Functions/O8_JS_Prac/JS_Function_Realtime_Eg_01.js'],
   ['status-classifier', 'Status Code Classifier', 'Classify status codes with if/else, ternary and switch.', 'functions', ['http', 'practice'], '10_JS_Functions/O8_JS_Prac/JS_Function_Realtime_Eg_02.js'],
   ['template-literals', 'Template Literals', 'Build strings with backticks and ${} interpolation.', 'functions', ['template'], '10_JS_Functions/O8_JS_Prac/JS_Function_Template_Literals.js'],
+  ['function-reuse', 'Reusable Function', 'Define and call a function, and compare its return value with console output.', 'functions', ['function', 'return'], '10_JS_Functions/O8_JS_Prac/JS.fn.js'],
 
   // ---------------------------------------------------------------- strings
   ['string-creation', 'Creating Strings', 'Single quotes, double quotes and template literals.', 'strings', ['create'], '11_JS_String/01_JS_Strings/01_JS_String_Samples.js'],
@@ -163,8 +169,8 @@ const entries = [
   ['string-substring', 'substring()', 'Extract a substring; negative values become 0.', 'strings', ['substring'], '11_JS_String/02_JS_Extract_Strings/02_JS_String_Substring.js'],
   ['string-case', 'Changing Case', 'toUpperCase() and toLowerCase().', 'strings', ['case'], '11_JS_String/02_JS_Extract_Strings/03_JS_String_Upper_Lower_Cases.js'],
   ['string-replace', 'replace & replaceAll', 'Replace one or all matches, including with a regex.', 'strings', ['replace'], '11_JS_String/02_JS_Extract_Strings/04_JS_String_Replace.js'],
-  ['string-concatenation', 'Concatenation', 'Join strings with +, concat() and template literals.', 'strings', ['concat'], '11_JS_String/02_JS_Extract_Strings/05_JS_String_Trim copy.js'],
-  ['string-trim', 'trim()', 'Strip whitespace from the start and/or end of a string.', 'strings', ['trim'], '11_JS_String/02_JS_Extract_Strings/06_JS_String_Concat.js'],
+  ['string-concatenation', 'Concatenation', 'Join strings with +, concat() and template literals.', 'strings', ['concat'], '11_JS_String/02_JS_Extract_Strings/06_JS_String_Concat.js'],
+  ['string-trim', 'trim()', 'Strip whitespace from the start and/or end of a string.', 'strings', ['trim'], '11_JS_String/02_JS_Extract_Strings/05_JS_String_Trim copy.js'],
   ['string-split-join', 'split & join', 'Convert between strings and arrays.', 'strings', ['split', 'join'], '11_JS_String/02_JS_Extract_Strings/07_JS_String_Split_Join.js'],
   ['string-conversion', 'Type Conversion', 'Convert between strings and numbers.', 'strings', ['conversion'], '11_JS_String/02_JS_Extract_Strings/08_JS_String_Conversion.js'],
 
@@ -176,6 +182,11 @@ const entries = [
   ['async-callback-flow', 'Async E2E Flow', 'An end-to-end flow built from asynchronous callbacks.', 'callbacks', ['async', 'e2e'], '14_JS_CallBack/02_JS_Async_Callback/02_JS_Async_Callback_Sample.js'],
   ['callback-return', 'Callback with Return', 'A callback that returns a value to its caller.', 'callbacks', ['return'], '14_JS_CallBack/03_JS_Callback_Return/JS_Callback_return_Sample.js'],
   ['callback-operations', 'Callbacks as Operations', 'Pass add() or multiply() as the operation to run.', 'callbacks', ['strategy'], '14_JS_CallBack/04_JS_Callback_Prct/02_JS_Callback_Prac.js'],
+  ['callback-reference', 'Pass a Callback by Reference', 'Pass a named callback function to another function.', 'callbacks', ['callback', 'reference'], '14_JS_CallBack/04_JS_Callback_Prct/01_JS_Callback_Prac.js'],
+  ['callback-arguments', 'Pass Data to a Callback', 'Forward a name argument to the supplied callback.', 'callbacks', ['callback', 'arguments'], '14_JS_CallBack/04_JS_Callback_Prct/03_JS_Callback_Prac.js'],
+  ['callback-no-arguments', 'Callback Without Arguments', 'Invoke a callback after a greeting without passing arguments.', 'callbacks', ['callback'], '14_JS_CallBack/04_JS_Callback_Prct/04_JS_Callback_Prac.js'],
+  ['callback-anonymous', 'Anonymous Callback', 'Pass an anonymous function as a callback.', 'callbacks', ['callback', 'anonymous'], '14_JS_CallBack/04_JS_Callback_Prct/05_JS_Callback_Prac.js'],
+  ['callback-arrow', 'Arrow Callback', 'Pass an arrow function as a callback.', 'callbacks', ['callback', 'arrow'], '14_JS_CallBack/04_JS_Callback_Prct/06_JS_Callback_Prac.js'],
   ['callback-guard', 'Guard Against Bad Callbacks', 'Check typeof before invoking a callback.', 'callbacks', ['validation'], '14_JS_CallBack/04_JS_Callback_Prct/07_JS_Callback_Prac.js'],
 
   // ---------------------------------------------------------------- promises
@@ -184,6 +195,7 @@ const entries = [
   ['promise-finally', 'Promise: finally', 'Run cleanup code no matter the outcome.', 'promises', ['finally'], '15_JS_Promise/01_JS_Promise/03_JS_Promise_Sample.js'],
   ['promise-food-order', 'Promise: Food Order', 'Model pending / fulfilled / rejected with a delivery scenario.', 'promises', ['states'], '15_JS_Promise/02_JS_Promise_Pract/03_JS_Promise.prac.js'],
   ['promise-food-order-timer', 'Promise: Delayed Order', 'A food-order promise that resolves after a delay.', 'promises', ['setTimeout'], '15_JS_Promise/02_JS_Promise_Pract/01.JS_Promise_Pract.js'],
+  ['promise-food-order-conditional', 'Promise: Conditional Order', 'Resolve or reject an order promise based on its outcome.', 'promises', ['resolve', 'reject'], '15_JS_Promise/02_JS_Promise_Pract/02.JS_Promise_Pract.js'],
   ['promise-all', 'Promise.all', 'Wait for every promise to resolve successfully.', 'promises', ['all'], '15_JS_Promise/03_JS_Promise_All/01_JS_Promise_All_Sample.js'],
   ['promise-all-reject', 'Promise.all with a Failure', 'One rejection rejects the whole Promise.all.', 'promises', ['all', 'reject'], '15_JS_Promise/03_JS_Promise_All/02_JS_Promise_All_Sample.js'],
   ['promise-allSettled', 'Promise.allSettled', 'Wait for every promise to settle, success or failure.', 'promises', ['allSettled'], '15_JS_Promise/04_JS_Promise_AllSettled/01_JS_Promise_AllSetteled_Sample.js'],
@@ -195,15 +207,60 @@ const entries = [
   ['async-callback-hell', 'Callback Hell: Checkout', 'Nested callbacks for login, cart, discount and payment.', 'async', ['callback hell'], '16_JS_Async_Await/01_JS_Async_Await_Basics/04_JS_Callback_Hell.js'],
   ['async-await-flow', 'Async / Await Flow', 'Run a sequence of awaited steps in order.', 'async', ['await'], '16_JS_Async_Await/02_JS_Async_Await_CoreSamples/01_JS_Async_Await_sample.js'],
   ['async-await-try-catch', 'Async / Await with try/catch', 'Handle a rejected awaited promise with try/catch.', 'async', ['await', 'errors'], '16_JS_Async_Await/02_JS_Async_Await_CoreSamples/02_JS_Async_Await_sample.js'],
+
+  // ---------------------------------------------------------------- ES modules
+  ['module-named-exports', 'Named Exports', 'Export named functions and constants from a module.', 'modules', ['export', 'named'], '17_JS_Export_Import/01_JS_Exp_Imp_Samples/01_JS_Export_Sample.js', { run: false, note: 'ES module exports need Node.js module execution.' }],
+  ['module-default-class', 'Default Class Export', 'Export a User class as the module default.', 'modules', ['export', 'default', 'class'], '17_JS_Export_Import/01_JS_Exp_Imp_Samples/02_JS_Export_Sample.js', { run: false, note: 'ES module exports need Node.js module execution.' }],
+  ['module-import-exports', 'Importing Named & Default Exports', 'Import helpers and a class from neighboring module files.', 'modules', ['import', 'export'], '17_JS_Export_Import/01_JS_Exp_Imp_Samples/03_JS_Import_Sample.js', { run: false, note: 'This example imports multiple files and needs Node.js module execution.' }],
+  ['module-default-function-sample', 'Default Export Draft', 'An example file with a commented default-export function.', 'modules', ['export', 'default'], '17_JS_Export_Import/01_JS_Exp_Imp_Samples/04_JS_Exp_Sample.js'],
+  ['module-validation-exports', 'Validation Helper Exports', 'Export email and password validation functions.', 'modules', ['export', 'validation'], '17_JS_Export_Import/02_JS_Exp_Imp_Samples/01_JS_Export_Sample.js', { run: false, note: 'ES module exports need Node.js module execution.' }],
+  ['module-validation-imports', 'Import Validation Helpers', 'Import validation functions and a default-exported class.', 'modules', ['import', 'validation'], '17_JS_Export_Import/02_JS_Exp_Imp_Samples/02_JS_Import_Sample.js', { run: false, note: 'This example imports multiple files and needs Node.js module execution.' }],
+  ['module-default-log', 'Default Logger Export', 'Export a default logging function.', 'modules', ['export', 'default'], '17_JS_Export_Import/03_JS_Exp_Imp_Samples/01_JS_Export_Sample.js', { run: false, note: 'This ES module has duplicate default exports and needs correction before Node.js can run it.' }],
+  ['module-import-logger', 'Import Logger', 'Import a logging function from another module.', 'modules', ['import', 'default'], '17_JS_Export_Import/03_JS_Exp_Imp_Samples/02_JS_Import_sample.js', { run: false, note: 'This example imports another file and needs Node.js module execution.' }],
+
+  // ---------------------------------------------------------------- object-oriented JavaScript
+  ['oop-default-constructor', 'Default Constructor', 'Run a class constructor when creating a student object.', 'oop', ['class', 'constructor'], '18_JS_OOPs/02_JS_Constructors/01_JS_Defaults_Constructor/01_JS_Default_Constructor.js'],
+  ['oop-parameter-constructor', 'Parameterized Constructor', 'Pass a name and grade to a class constructor.', 'oop', ['class', 'constructor'], '18_JS_OOPs/02_JS_Constructors/02_JS_Param_Constructor/01_JS_Param_Con_Sample.js'],
+  ['oop-student-class', 'Student Class & Constructor', 'Store student details in class instances and introduce each student.', 'oop', ['class', 'constructor'], '18_JS_OOPs/02_JS_Constructors/02_JS_Param_Constructor/02_JS_Param_Con_Sample.js'],
+  ['oop-single-inheritance', 'Single Inheritance', 'Extend a parent class and call methods from both classes.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/01_JS_Single_Inheritance/01_JS_Inh_Sample.js'],
+  ['oop-inherited-constructor', 'Inheritance with Constructors', 'Initialize inherited properties with super().', 'oop', ['class', 'inheritance', 'super'], '18_JS_OOPs/03_JS_Inheritance/01_JS_Single_Inheritance/02_JS_Inh_Sample.js'],
+  ['oop-browser-setup', 'Browser Setup Inheritance', 'Reuse a base browser setup in a derived test class.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/01_JS_Single_Inheritance/03_JS_Inh_Sample.js'],
+  ['oop-multilevel-inheritance', 'Multilevel Inheritance', 'Chain GrandFather, Parent and Child classes.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/02_JS_Multilevel_Inheritance/01_JS_ML_Inh_Sample.js'],
+  ['oop-test-configuration', 'Multilevel Test Configuration', 'Pass environment and browser settings through base classes.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/02_JS_Multilevel_Inheritance/02_JS_ML_Inh_Sample.js'],
+  ['oop-hierarchical-inheritance', 'Hierarchical Family Inheritance', 'Share a Father class across two child classes.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/03_JS_Hierarichical/01_JS_Hie_Sample.js'],
+  ['oop-hierarchical-testing', 'Hierarchical Test Setup', 'Reuse a base setup across API and UI test classes.', 'oop', ['class', 'inheritance'], '18_JS_OOPs/03_JS_Inheritance/03_JS_Hierarichical/02_JS_Hie_Sample.js'],
+  ['oop-private-fields', 'Private Class Fields', 'Keep child names private and expose them through methods.', 'oop', ['class', 'encapsulation'], '18_JS_OOPs/04_JS_Encapsulation/01_JS_Encapsulation_Sample.js'],
+  ['oop-private-counter', 'Encapsulated Counter', 'Change and read a private counter through class methods.', 'oop', ['class', 'encapsulation'], '18_JS_OOPs/04_JS_Encapsulation/02_JS_Encapsulation_Sample.js'],
+  ['oop-validated-setter', 'Validated Setter', 'Validate a name before changing a private class field.', 'oop', ['class', 'encapsulation', 'getter', 'setter'], '18_JS_OOPs/04_JS_Encapsulation/03_JS_Encapsulation_Sample.js'],
+  ['oop-polymorphism', 'Polymorphism', 'Override a parent speak() method in Dog and Cat classes.', 'oop', ['class', 'polymorphism'], '18_JS_OOPs/05_JS_Polymerphism/01_JS_Poly_Sample.js'],
 ];
 
+function listJavaScriptFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) return listJavaScriptFiles(path);
+    return entry.isFile() && entry.name.endsWith('.js') ? [path] : [];
+  });
+}
+
+const practiceDirectories = readdirSync(root, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && /^(?:0[1-9]|1[0-8])_/.test(entry.name))
+  .map((entry) => join(root, entry.name));
+const practiceFiles = practiceDirectories.flatMap(listJavaScriptFiles);
+const entryFiles = entries.map((entry) => join(root, entry[5]));
+const missingEntries = practiceFiles.filter((file) => !entryFiles.includes(file));
+const unknownEntries = entryFiles.filter((file) => !practiceFiles.includes(file));
+const ids = entries.map(([id]) => id);
+if (missingEntries.length || unknownEntries.length || new Set(ids).size !== ids.length) {
+  throw new Error([
+    missingEntries.length ? `Missing program entries:\n${missingEntries.join('\n')}` : '',
+    unknownEntries.length ? `Unknown source files:\n${unknownEntries.join('\n')}` : '',
+    new Set(ids).size !== ids.length ? 'Program IDs must be unique.' : '',
+  ].filter(Boolean).join('\n'));
+}
+
 const programs = entries.map(([id, title, description, category, tags, file, options = {}]) => {
-  let code;
-  try {
-    code = readFileSync(join(root, file), 'utf8');
-  } catch (err) {
-    code = `// Could not load ${file}\n// ${err.message}`;
-  }
+  const code = readFileSync(join(root, file), 'utf8');
   return {
     id,
     title,

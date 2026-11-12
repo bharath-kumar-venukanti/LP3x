@@ -30,9 +30,11 @@
     callbacks: "#f97316",
     promises: "#8b5cf6",
     async: "#ef4444",
+    modules: "#64748b",
+    oop: "#d946ef",
   };
 
-  const TIMER_CAP_MS = 400; // demo timers run fast so output appears quickly
+  const SANDBOX_TIMEOUT_MS = 5000;
 
   const programs = window.PROGRAMS || [];
   const categories = window.CATEGORIES || [];
@@ -86,13 +88,16 @@
   function renderStats() {
     const totalLines = programs.reduce((sum, p) => sum + (p.lines || 0), 0);
     const runnable = programs.filter((p) => p.runnable).length;
+    const runnablePercent = programs.length
+      ? Math.round((runnable / programs.length) * 100)
+      : 0;
 
     setText("heroCount", programs.length);
     setText("totalCount", programs.length);
     setText("statPrograms", programs.length);
     setText("statCategories", categories.length);
     setText("statLines", totalLines.toLocaleString());
-    setText("statRunnable", runnable);
+    setText("statRunnable", runnablePercent + "%");
     setText("year", new Date().getFullYear());
   }
 
@@ -241,7 +246,8 @@
     label.textContent = "console";
     const status = document.createElement("span");
     status.className = "console-status";
-    status.textContent = program.runnable ? "ready" : "node only";
+    status.textContent = program.runnable ? "ready" : "source only";
+    if (program.note) status.title = program.note;
     consoleBar.append(label, status);
     const out = document.createElement("pre");
     out.className = "console-out";
@@ -343,144 +349,230 @@
   /* ==================================================================
      6. The run engine
      ================================================================== */
-  const activeTimers = new Map(); // program.id -> Set<number>
+  const activeRuns = new Map();
 
-  function clearTimers(id) {
-    const set = activeTimers.get(id);
-    if (!set) return;
-    set.forEach((t) => { window.clearTimeout(t); window.clearInterval(t); });
-    set.clear();
-  }
+  function sandboxBootstrap() {
+    const TIMER_CAP_MS = 400;
+    const nativeSetTimeout = window.setTimeout.bind(window);
+    const nativeClearTimeout = window.clearTimeout.bind(window);
+    const nativeSetInterval = window.setInterval.bind(window);
+    const nativeClearInterval = window.clearInterval.bind(window);
 
-  function fmt(value, depth) {
-    depth = depth || 0;
-    if (value === null) return "null";
-    if (value === undefined) return "undefined";
-    const t = typeof value;
-    if (t === "string") return depth === 0 ? value : "'" + value + "'";
-    if (t === "number" || t === "boolean") return String(value);
-    if (t === "bigint") return value + "n";
-    if (t === "symbol") return value.toString();
-    if (t === "function") return "[Function: " + (value.name || "anonymous") + "]";
-    if (value instanceof Error) return value.stack || value.name + ": " + value.message;
-    if (value instanceof Date) return value.toISOString();
-    if (Array.isArray(value)) {
-      if (depth > 3) return "[Array]";
-      return "[ " + value.map((v) => fmt(v, depth + 1)).join(", ") + " ]";
+    function format(value, depth, seen) {
+      depth = depth || 0;
+      if (value === null) return "null";
+      if (value === undefined) return "undefined";
+      if (typeof value === "string") return depth ? "'" + value + "'" : value;
+      if (typeof value === "bigint") return value + "n";
+      if (typeof value === "symbol") return value.toString();
+      if (typeof value === "function") return "[Function: " + (value.name || "anonymous") + "]";
+      if (value instanceof Error) return value.stack || value.name + ": " + value.message;
+      if (value instanceof Date) return value.toISOString();
+      if (typeof value !== "object") return String(value);
+      if (depth > 3) return Array.isArray(value) ? "[Array]" : "[Object]";
+      if (seen.has(value)) return "[Circular]";
+      seen.add(value);
+      if (Array.isArray(value)) {
+        return "[ " + value.map((item) => format(item, depth + 1, seen)).join(", ") + " ]";
+      }
+      const keys = Object.keys(value);
+      return keys.length
+        ? "{ " + keys.map((key) => key + ": " + format(value[key], depth + 1, seen)).join(", ") + " }"
+        : "{}";
     }
-    if (depth > 3) return "[Object]";
-    const keys = Object.keys(value);
-    if (!keys.length) return "{}";
-    return "{ " + keys.map((k) => k + ": " + fmt(value[k], depth + 1)).join(", ") + " }";
-  }
 
-  function createConsole(outEl) {
-    function line(text, cls) {
-      const el = document.createElement("span");
-      el.className = "console-line" + (cls ? " console--" + cls : "");
-      el.textContent = text;
-      outEl.appendChild(el);
-      outEl.scrollTop = outEl.scrollHeight;
-      return el;
+    function emit(level, args) {
+      parent.postMessage({
+        type: "console",
+        level,
+        text: Array.from(args, (value) => format(value, 0, new WeakSet())).join(" "),
+      }, "*");
     }
-    return {
-      log: (...a) => line(a.map((v) => fmt(v)).join(" ")),
-      info: (...a) => line(a.map((v) => fmt(v)).join(" "), "info"),
-      warn: (...a) => line(a.map((v) => fmt(v)).join(" "), "warn"),
-      error: (...a) => line(a.map((v) => fmt(v)).join(" "), "error"),
-      debug: (...a) => line(a.map((v) => fmt(v)).join(" "), "meta"),
-      table: (...a) => line(a.map((v) => fmt(v)).join(" ")),
-      note: (text, cls) => line(text, cls || "meta"),
-      raw: (text) => {
-        let last = outEl.lastElementChild;
-        if (!last) last = line("", "meta");
-        last.textContent += text;
-        outEl.scrollTop = outEl.scrollHeight;
-      },
+
+    const sandboxConsole = {
+      log: (...args) => emit("log", args),
+      info: (...args) => emit("info", args),
+      warn: (...args) => emit("warn", args),
+      error: (...args) => emit("error", args),
+      debug: (...args) => emit("meta", args),
+      table: (...args) => emit("log", args),
     };
+
+    window.addEventListener("unhandledrejection", (event) => {
+      emit("error", [event.reason]);
+      event.preventDefault();
+    });
+
+    window.addEventListener("message", (event) => {
+      if (event.source !== parent || !event.data || event.data.type !== "run") return;
+
+      const timers = new Map();
+      let pendingTimeouts = 0;
+      let activeIntervals = 0;
+      let executionEnded = false;
+      let reportedError = false;
+      let settleTimer = null;
+
+      const finishIfIdle = () => {
+        if (!executionEnded || pendingTimeouts || activeIntervals) return;
+        if (settleTimer !== null) nativeClearTimeout(settleTimer);
+        settleTimer = nativeSetTimeout(() => {
+          if (executionEnded && !pendingTimeouts && !activeIntervals) {
+            parent.postMessage({ type: "done", error: reportedError }, "*");
+          }
+        }, 50);
+      };
+
+      const cappedTimeout = (fn, ms, ...args) => {
+        const delay = Math.min(Math.max(Number(ms) || 0, 0), TIMER_CAP_MS);
+        pendingTimeouts++;
+        const timerId = nativeSetTimeout(() => {
+          timers.delete(timerId);
+          pendingTimeouts--;
+          try {
+            if (typeof fn === "function") fn(...args);
+            else emit("warn", ["setTimeout was given a non-function"]);
+          } catch (error) {
+            reportedError = true;
+            emit("error", [error]);
+          }
+          finishIfIdle();
+        }, delay);
+        timers.set(timerId, "timeout");
+        return timerId;
+      };
+
+      const cappedInterval = (fn, ms, ...args) => {
+        const delay = Math.min(Math.max(Number(ms) || 200, 1), TIMER_CAP_MS);
+        activeIntervals++;
+        const timerId = nativeSetInterval(() => {
+          try { fn(...args); } catch (error) {
+            reportedError = true;
+            emit("error", [error]);
+          }
+        }, delay);
+        timers.set(timerId, "interval");
+        return timerId;
+      };
+
+      const clearTimer = (timerId) => {
+        const kind = timers.get(timerId);
+        if (kind === "timeout") pendingTimeouts--;
+        if (kind === "interval") activeIntervals--;
+        timers.delete(timerId);
+        nativeClearTimeout(timerId);
+        nativeClearInterval(timerId);
+        finishIfIdle();
+      };
+
+      window.setTimeout = cappedTimeout;
+      window.setInterval = cappedInterval;
+      window.clearTimeout = clearTimer;
+      window.clearInterval = clearTimer;
+
+      const processShim = {
+        stdout: { write: (text) => emit("meta", [String(text)]) },
+        stderr: { write: (text) => emit("error", [String(text)]) },
+        env: {},
+        argv: [],
+      };
+
+      try {
+        const execute = new Function(
+          "console", "process", "setTimeout", "setInterval", "clearTimeout", "clearInterval",
+          "return (async function () {\n" + event.data.code + "\n})();"
+        );
+        Promise.resolve(execute(sandboxConsole, processShim, cappedTimeout, cappedInterval, clearTimer, clearTimer))
+          .catch((error) => {
+            reportedError = true;
+            emit("error", [error]);
+          })
+          .then(() => {
+            executionEnded = true;
+            finishIfIdle();
+          });
+      } catch (error) {
+        reportedError = true;
+        emit("error", [error]);
+        executionEnded = true;
+        finishIfIdle();
+      }
+    });
+  }
+
+  function stopRun(id) {
+    const run = activeRuns.get(id);
+    if (!run) return;
+    window.clearTimeout(run.watchdog);
+    run.frame.remove();
+    activeRuns.delete(id);
+    run.runBtn.classList.remove("is-running");
+  }
+
+  function finishRun(run, status, message) {
+    if (!activeRuns.has(run.program.id)) return;
+    if (message) appendConsoleLine(
+      run.outEl,
+      message,
+      status === "error" || status === "timed out" ? "error" : "meta"
+    );
+    window.clearTimeout(run.watchdog);
+    run.frame.remove();
+    activeRuns.delete(run.program.id);
+    run.runBtn.classList.remove("is-running");
+    run.statusEl.textContent = status;
+  }
+
+  function appendConsoleLine(outEl, text, level) {
+    const line = document.createElement("span");
+    line.className = "console-line" + (level ? " console--" + level : "");
+    line.textContent = text;
+    outEl.appendChild(line);
+    outEl.scrollTop = outEl.scrollHeight;
+  }
+
+  function handleSandboxMessage(event) {
+    const run = Array.from(activeRuns.values()).find(
+      (activeRun) => activeRun.frame.contentWindow === event.source
+    );
+    if (!run || !event.data) return;
+
+    if (event.data.type === "console") {
+      appendConsoleLine(run.outEl, event.data.text, event.data.level);
+    } else if (event.data.type === "done") {
+      finishRun(run, event.data.error ? "error" : "finished");
+    }
   }
 
   function executeProgram(program, outEl, statusEl, runBtn) {
-    clearTimers(program.id);
-    outEl.innerHTML = "";
+    stopRun(program.id);
+    outEl.textContent = "";
     runBtn.classList.add("is-running");
     statusEl.innerHTML = '<span class="spinner"></span>running…';
 
-    const csl = createConsole(outEl);
-    const timers = new Set();
-    activeTimers.set(program.id, timers);
+    const frame = document.createElement("iframe");
+    frame.hidden = true;
+    frame.title = "Sandbox for " + program.title;
+    frame.referrerPolicy = "no-referrer";
+    frame.setAttribute("sandbox", "allow-scripts");
 
-    let pending = 0;
-    let intervals = 0;
-    let finished = false;
+    const run = { program, outEl, statusEl, runBtn, frame, watchdog: null };
+    activeRuns.set(program.id, run);
 
-    const settle = () => {
-      if (finished) return;
-      if (pending === 0 && intervals === 0) {
-        finished = true;
-        runBtn.classList.remove("is-running");
-        statusEl.textContent = "finished";
-      }
-    };
+    frame.addEventListener("load", () => {
+      if (!activeRuns.has(program.id)) return;
+      frame.contentWindow.postMessage({ type: "run", code: program.code }, "*");
+    }, { once: true });
 
-    const later = (fn) => window.setTimeout(fn, 80); // let microtasks flush first
+    frame.srcdoc =
+      '<!doctype html><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\' \'unsafe-eval\'; connect-src \'none\'; img-src \'none\'; media-src \'none\'; object-src \'none\'; frame-src \'none\'; form-action \'none\'; base-uri \'none\'"><script>(' +
+      sandboxBootstrap.toString() + ')();<\/script>';
+    document.body.appendChild(frame);
 
-    const cappedTimeout = (fn, ms, ...args) => {
-      const delay = Math.min(Number(ms) || 0, TIMER_CAP_MS);
-      pending++;
-      const id = window.setTimeout(() => {
-        timers.delete(id);
-        pending--;
-        try {
-          if (typeof fn === "function") fn(...args);
-          else csl.note("setTimeout was given a non-function", "warn");
-        } catch (err) {
-          csl.error(err);
-        }
-        later(settle);
-      }, delay);
-      timers.add(id);
-      return id;
-    };
-
-    const cappedInterval = (fn, ms, ...args) => {
-      const delay = Math.min(Number(ms) || 200, TIMER_CAP_MS) || 200;
-      intervals++;
-      const id = window.setInterval(() => {
-        try { fn(...args); } catch (err) { csl.error(err); }
-      }, delay);
-      timers.add(id);
-      return id;
-    };
-
-    const cappedClearTimeout = (id) => {
-      if (timers.has(id)) { timers.delete(id); pending = Math.max(0, pending - 1); }
-      window.clearTimeout(id);
-      window.clearInterval(id);
-    };
-
-    const processShim = {
-      stdout: { write: (s) => csl.raw(String(s)) },
-      stderr: { write: (s) => csl.raw(String(s)) },
-      env: {},
-      argv: [],
-    };
-
-    try {
-      // No "use strict" here on purpose: we want the same non-strict semantics
-      // the files have when run with `node file.js`.
-      const factory = new Function(
-        "console", "process", "setTimeout", "setInterval", "clearTimeout", "clearInterval",
-        program.code
-      );
-      factory(csl, processShim, cappedTimeout, cappedInterval, cappedClearTimeout, cappedClearTimeout);
-      later(settle);
-    } catch (err) {
-      finished = true;
-      runBtn.classList.remove("is-running");
-      statusEl.textContent = "error";
-      csl.error(err);
-    }
+    run.watchdog = window.setTimeout(() => {
+      finishRun(run, "timed out", "Execution stopped after " +
+        (SANDBOX_TIMEOUT_MS / 1000) + " seconds.");
+    }, SANDBOX_TIMEOUT_MS);
   }
 
   /* ==================================================================
@@ -580,6 +672,7 @@
   function init() {
     applyConfig();
     initTheme();
+    window.addEventListener("message", handleSandboxMessage);
     renderStats();
     renderChips();
     renderCards();

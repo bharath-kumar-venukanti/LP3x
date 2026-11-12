@@ -656,6 +656,7 @@ code, pre { font-family: var(--font-mono); }
   line-height: 1.6;
 }
 .panel pre code { font-size: inherit; }
+.panel--code pre { max-height: min(65vh, 560px); }
 
 .panel--console { background: var(--console-bg); }
 .panel--console .panel__bar { border-bottom-color: rgba(255, 255, 255, 0.08); }

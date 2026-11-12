@@ -235,13 +235,20 @@ npx tsx 19_TypeScript/02_TS_Pract_Samples/02_TS_Real_Samples.ts
 
 ## Browser portfolio
 
-Open `index.html` in a browser to browse the program collection. The portfolio includes search and category filters, and supported examples can be run in the page. If you add or change practice files represented in the portfolio, regenerate its program data with:
+Open `index.html` in a browser to browse the JavaScript program collection (modules `01`–`18`; the TypeScript samples in `19_TypeScript` run with Node.js instead). The portfolio:
+
+- searches and filters by topic across 12 categories, from fundamentals and operators through promises, async/await, ES modules, and object-oriented JavaScript
+- calculates its header statistics (programs, categories, lines of code, and the percentage runnable in the browser) from the generated data
+- runs supported examples inside a sandboxed `iframe` with no network access, capped timers, and a five-second execution limit
+- shows examples that need Node.js input or multi-file ES module loading as source only, marked "source only" on the card
+
+After adding or changing practice files, add or update the matching metadata entry in `tools/generate-programs.mjs` and regenerate the data with:
 
 ```bash
 node tools/generate-programs.mjs
 ```
 
-The generated `programs-data.js` file is consumed by the portfolio page.
+The generator fails if a JavaScript file in modules `01`–`18` has no portfolio entry, if an entry points at a missing file, or if program IDs are not unique. Do not edit the generated `programs-data.js` file by hand — it is consumed by the portfolio page.
 
 ## Tools used
 
