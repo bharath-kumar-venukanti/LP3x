@@ -1,6 +1,6 @@
 ﻿# JavaScript Learning Journey (LP3x)
 
-This repository is a hands-on JavaScript learning workspace with focused examples, short exercises, and an interactive browser portfolio for exploring and running supported programs.
+This repository is a hands-on JavaScript and TypeScript learning workspace with focused examples, short exercises, and an interactive browser portfolio for exploring and running supported programs.
 
 ## Purpose
 
@@ -9,7 +9,8 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, async/await, ES modules, and object-oriented programming
+- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, async/await, ES modules, and object-oriented programming (inheritance, encapsulation, and polymorphism)
+- get started with TypeScript: type annotations, primitives, arrays, `any`/`unknown`/`never`, function and object typing, and practical API/test examples
 - browse, search, and run supported examples in the browser-based portfolio
 
 ## Learning path
@@ -33,7 +34,8 @@ The project is designed to help learners:
 | 15 | [15_JS_Promise](./15_JS_Promise) | Promises: `resolve`/`reject`, chaining, and the `all`, `allSettled`, and `race` methods |
 | 16 | [16_JS_Async_Await](./16_JS_Async_Await) | Synchronous vs. asynchronous execution, timers, callbacks, and async/await |
 | 17 | [17_JS_Export_Import](./17_JS_Export_Import) | ES modules: named and default exports, imports, aliasing, and multi-file reuse |
-| 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes, objects and methods, plus default and parameterized constructors |
+| 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes, objects, constructors, inheritance, encapsulation, and polymorphism |
+| 19 | [19_TypeScript](./19_TypeScript) | TypeScript basics: types, functions, objects, `never`, and practical samples |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -169,6 +171,11 @@ Object-oriented programming basics, organized into focused subfolders:
 | `01_JS_Class_Obj` | Defining a class, creating an object with `new`, and calling a method (`greetings`) |
 | `02_JS_Constructors/01_JS_Defaults_Constructor` | A default constructor that runs when an object is created |
 | `02_JS_Constructors/02_JS_Param_Constructor` | Parameterized constructors that accept and log values, plus a version that stores properties (`name`, `age`, `grade`) with `this` and uses them in an `introduce` method |
+| `03_JS_Inheritance/01_JS_Single_Inheritance` | `extends` and `super`: reusing parent methods, constructors, and a browser-setup example |
+| `03_JS_Inheritance/02_JS_Multilevel_Inheritance` | Chained inheritance across grandparent, parent, and child classes |
+| `03_JS_Inheritance/03_JS_Hierarichical` | Multiple child classes sharing one parent (family surname and test-setup examples) |
+| `04_JS_Encapsulation` | Private fields (`#property`) with getter/setter methods and validation |
+| `05_JS_Polymerphism` | Overriding a parent `speak` method in `Dog` and `Cat` subclasses |
 
 Sample files:
 
@@ -176,6 +183,32 @@ Sample files:
 - `02_JS_Constructors/01_JS_Defaults_Constructor/01_JS_Default_Constructor.js` — a default constructor invoked on object creation
 - `02_JS_Constructors/02_JS_Param_Constructor/01_JS_Param_Con_Sample.js` — a parameterized constructor that logs the arguments it receives
 - `02_JS_Constructors/02_JS_Param_Constructor/02_JS_Param_Con_Sample.js` — a parameterized constructor that stores properties and uses them in a method
+- `03_JS_Inheritance/01_JS_Single_Inheritance` — `01_JS_Inh_Sample.js`, `02_JS_Inh_Sample.js`, `03_JS_Inh_Sample.js`
+- `03_JS_Inheritance/02_JS_Multilevel_Inheritance` — `01_JS_ML_Inh_Sample.js`, `02_JS_ML_Inh_Sample.js`
+- `03_JS_Inheritance/03_JS_Hierarichical` — `01_JS_Hie_Sample.js`, `02_JS_Hie_Sample.js`
+- `04_JS_Encapsulation` — `01_JS_Encapsulation_Sample.js`, `02_JS_Encapsulation_Sample.js`, `03_JS_Encapsulation_Sample.js`
+- `05_JS_Polymerphism/01_JS_Poly_Sample.js` — a shared `Animal` base class with `Dog` and `Cat` overrides
+
+### 19_TypeScript
+TypeScript fundamentals and hands-on practice, organized into focused subfolders:
+
+| Folder | Focus |
+|--------|-------|
+| `01_TS_Samples` | Type annotations for primitives, arrays, `any`, `unknown`, and `never`; typed functions (`void`, `string`, anonymous) and object types; plus the compiled JavaScript counterparts |
+| `02_TS_Pract_Samples` | Practical, test-oriented samples: building an API endpoint, checking for 2xx success codes, logging test steps, and filtering failed response codes |
+
+Sample files:
+
+- `01_TS_Samples/01_Hello.ts` — a first typed script
+- `01_TS_Samples/02_TS_Sample.ts` — string annotations and a typed `add` function
+- `01_TS_Samples/03_TS_Sample.ts` — a `void` function with a typed parameter
+- `01_TS_Samples/04_TS_Types_Samples.ts` — primitives, arrays, `any`, and `unknown`
+- `01_TS_Samples/05_TS_Types_Samples.ts` — narrowing `unknown`/`any` with `typeof`
+- `01_TS_Samples/06_TS_Function_Samples.ts` — function annotation variants
+- `01_TS_Samples/07_TS_Obj_Samples.ts` — object type annotations
+- `01_TS_Samples/08_TS_Never_Samples.ts` — `never`-returning functions
+- `02_TS_Pract_Samples/01_TS_Real_Samples.ts` — endpoint builder and response-code checks
+- `02_TS_Pract_Samples/02_TS_Real_Samples.ts` — filtering failed status codes
 
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
@@ -192,6 +225,14 @@ You can also run files directly from VS Code using the Run button or run the scr
 
 The `17_JS_Export_Import` examples use ES module syntax (`import`/`export`). Run them with Node.js 22.7+ (which detects module syntax automatically), or add a `package.json` with `"type": "module"`.
 
+TypeScript samples live in `19_TypeScript`. Compile or run them with the TypeScript compiler (the root `tsconfig.json` provides the settings):
+
+```bash
+npx tsc 19_TypeScript/01_TS_Samples/01_Hello.ts
+npx tsc 19_TypeScript/01_TS_Samples/01_Hello.ts --outDir dist
+npx tsx 19_TypeScript/02_TS_Pract_Samples/02_TS_Real_Samples.ts
+```
+
 ## Browser portfolio
 
 Open `index.html` in a browser to browse the program collection. The portfolio includes search and category filters, and supported examples can be run in the page. If you add or change practice files represented in the portfolio, regenerate its program data with:
@@ -205,6 +246,7 @@ The generated `programs-data.js` file is consumed by the portfolio page.
 ## Tools used
 
 - JavaScript (ES6+)
+- TypeScript
 - Node.js
 - Visual Studio Code
 
@@ -279,12 +321,43 @@ The generated `programs-data.js` file is consumed by the portfolio page.
 18_JS_OOPs/
 ├── 01_JS_Class_Obj/
 │   └── 01_JS_Class_Obj_Sample
-└── 02_JS_Constructors/
-    ├── 01_JS_Defaults_Constructor/
-    │   └── 01_JS_Default_Constructor.js
-    └── 02_JS_Param_Constructor/
-        ├── 01_JS_Param_Con_Sample.js
-        └── 02_JS_Param_Con_Sample.js
+├── 02_JS_Constructors/
+│   ├── 01_JS_Defaults_Constructor/
+│   │   └── 01_JS_Default_Constructor.js
+│   └── 02_JS_Param_Constructor/
+│       ├── 01_JS_Param_Con_Sample.js
+│       └── 02_JS_Param_Con_Sample.js
+├── 03_JS_Inheritance/
+│   ├── 01_JS_Single_Inheritance/
+│   │   ├── 01_JS_Inh_Sample.js
+│   │   ├── 02_JS_Inh_Sample.js
+│   │   └── 03_JS_Inh_Sample.js
+│   ├── 02_JS_Multilevel_Inheritance/
+│   │   ├── 01_JS_ML_Inh_Sample.js
+│   │   └── 02_JS_ML_Inh_Sample.js
+│   └── 03_JS_Hierarichical/
+│       ├── 01_JS_Hie_Sample.js
+│       └── 02_JS_Hie_Sample.js
+├── 04_JS_Encapsulation/
+│   ├── 01_JS_Encapsulation_Sample.js
+│   ├── 02_JS_Encapsulation_Sample.js
+│   └── 03_JS_Encapsulation_Sample.js
+└── 05_JS_Polymerphism/
+    └── 01_JS_Poly_Sample.js
+19_TypeScript/
+├── 01_TS_Samples/
+│   ├── 01_Hello.ts
+│   ├── 02_TS_Sample.ts
+│   ├── 03_TS_Sample.ts
+│   ├── 04_TS_Types_Samples.ts
+│   ├── 05_TS_Types_Samples.ts
+│   ├── 06_TS_Function_Samples.ts
+│   ├── 07_TS_Obj_Samples.ts
+│   └── 08_TS_Never_Samples.ts
+└── 02_TS_Pract_Samples/
+    ├── 01_TS_Real_Samples.ts
+    └── 02_TS_Real_Samples.ts
+tsconfig.json
 IQ_Notes/
 index.html
 script.js
