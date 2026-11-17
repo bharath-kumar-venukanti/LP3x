@@ -9,8 +9,9 @@ The project is designed to help learners:
 - understand JavaScript fundamentals
 - practice syntax and logic through examples
 - build confidence by running small programs in Node.js
-- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, async/await, ES modules, and object-oriented programming (inheritance, encapsulation, and polymorphism)
+- explore progressively advanced topics from basics through functions, closures, strings, objects, 2D arrays, callbacks, promises, async/await, ES modules, and object-oriented programming (inheritance, encapsulation, polymorphism, and abstraction)
 - get started with TypeScript: type annotations, primitives, arrays, `any`/`unknown`/`never`, function and object typing, and practical API/test examples
+- model abstraction with TypeScript interfaces: object shapes, `readonly` properties, interface inheritance, and method signatures
 - browse, search, and run supported examples in the browser-based portfolio
 
 ## Learning path
@@ -36,6 +37,7 @@ The project is designed to help learners:
 | 17 | [17_JS_Export_Import](./17_JS_Export_Import) | ES modules: named and default exports, imports, aliasing, and multi-file reuse |
 | 18 | [18_JS_OOPs](./18_JS_OOPs) | Classes, objects, constructors, inheritance, encapsulation, and polymorphism |
 | 19 | [19_TypeScript](./19_TypeScript) | TypeScript basics: types, functions, objects, `never`, and practical samples |
+| 20 | [20_OOPS_Abstraction](./20_OOPS_Abstraction) | TypeScript interfaces for abstraction: object shapes, `readonly`, inheritance, and method signatures |
 | IQ | [IQ_Notes](./IQ_Notes) | Concept explainers and quick notes |
 
 ## Folder overview
@@ -210,6 +212,20 @@ Sample files:
 - `02_TS_Pract_Samples/01_TS_Real_Samples.ts` — endpoint builder and response-code checks
 - `02_TS_Pract_Samples/02_TS_Real_Samples.ts` — filtering failed status codes
 
+### 20_OOPS_Abstraction
+Abstraction in TypeScript through interfaces, organized into a single focused subfolder:
+
+| Folder | Focus |
+|--------|-------|
+| `01_Interface` | Declaring interfaces as contracts, `readonly` members, extending a base interface, and method signatures |
+
+Sample files:
+
+- `01_Interface/01_Interface_Sample.ts` — a `User` interface typed against several objects
+- `01_Interface/02_TS_Interface_Readonly_Samples.ts` — `readonly` properties that block reassignment
+- `01_Interface/03_TS_Interface_samples.ts` — `LoginPage` and `FreeTrailPage` extending a shared `BasePage`
+- `01_Interface/04_TS_Interface_method.ts` — a `Calculator` interface with an `add` method signature
+
 ### IQ_Notes
 Short learning notes and concept summaries that support the main examples.
 
@@ -225,7 +241,7 @@ You can also run files directly from VS Code using the Run button or run the scr
 
 The `17_JS_Export_Import` examples use ES module syntax (`import`/`export`). Run them with Node.js 22.7+ (which detects module syntax automatically), or add a `package.json` with `"type": "module"`.
 
-TypeScript samples live in `19_TypeScript`. Compile or run them with the TypeScript compiler (the root `tsconfig.json` provides the settings):
+TypeScript samples live in `19_TypeScript` and `20_OOPS_Abstraction`. Compile or run them with the TypeScript compiler (the root `tsconfig.json` provides the settings):
 
 ```bash
 npx tsc 19_TypeScript/01_TS_Samples/01_Hello.ts
@@ -364,6 +380,12 @@ The generator fails if a JavaScript file in modules `01`–`18` has no portfolio
 └── 02_TS_Pract_Samples/
     ├── 01_TS_Real_Samples.ts
     └── 02_TS_Real_Samples.ts
+20_OOPS_Abstraction/
+└── 01_Interface/
+    ├── 01_Interface_Sample.ts
+    ├── 02_TS_Interface_Readonly_Samples.ts
+    ├── 03_TS_Interface_samples.ts
+    └── 04_TS_Interface_method.ts
 tsconfig.json
 IQ_Notes/
 index.html

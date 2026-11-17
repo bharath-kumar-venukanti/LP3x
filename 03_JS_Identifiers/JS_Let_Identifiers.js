@@ -94,9 +94,9 @@ console.log(shadow);
 // 12. let inside a loop creates a NEW binding each iteration
 // ------------------------------------------------------------
 for (let n = 0; n < 3; n++) {
-  // each loop gets its own `n`
+   console.log(n); 
 }
-// console.log(n); 
+
 
 // ------------------------------------------------------------
 // 13. let with every common data type
